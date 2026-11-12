@@ -1,0 +1,63 @@
+
+services:
+  db:
+    image: postgres:16
+    container_name: user_database
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppassword
+      POSTGRES_DB: userdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d userdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app1:
+    build: ./app
+    container_name: flask_app1
+    environment:
+      DATABASE_URL: postgresql+psycopg://appuser:apppassword@db:5432/userdb
+    depends_on:
+      db:
+        condition: service_healthy
+
+  app2:
+    build: ./app
+    container_name: flask_app2
+    environment:
+      DATABASE_URL: postgresql+psycopg://appuser:apppassword@db:5432/userdb
+    depends_on:
+      db:
+        condition: service_healthy
+
+  app3:
+    build: ./app
+    container_name: flask_app3
+    environment:
+      DATABASE_URL: postgresql+psycopg://appuser:apppassword@db:5432/userdb
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_load_balancer
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - app1
+      - app2
+      - app3
+
+volumes:
+  postgres_data:

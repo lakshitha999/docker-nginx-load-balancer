@@ -1,0 +1,139 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #061326;
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+
+  background:
+    linear-gradient(
+      rgba(2, 10, 25, 0.35),
+      rgba(2, 10, 25, 0.35)
+    ),
+    url("/cyber-bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 45px;
+  text-align: center;
+
+  background: rgba(5, 19, 42, 0.82);
+  backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(0, 190, 255, 0.8);
+  border-radius: 24px;
+
+  box-shadow: 0 0 35px rgba(0, 160, 255, 0.35);
+}
+
+.card-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.form-card h1 {
+  color: white;
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #c4d9ed;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #57708e;
+  border-radius: 12px;
+  background: rgba(17, 43, 75, 0.9);
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+input::placeholder {
+  color: #c0cbd9;
+}
+
+input:focus {
+  border-color: #00d9ff;
+  box-shadow: 0 0 12px rgba(0, 217, 255, 0.3);
+}
+
+button {
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(100deg, #00c9ed, #3155ff);
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 25px rgba(0, 195, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.switch-text {
+  color: white;
+  margin-top: 28px;
+  font-size: 16px;
+}
+
+.switch-text span {
+  color: #00d9ff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+@media (max-width: 500px) {
+  .form-card {
+    padding: 30px 22px;
+  }
+}
+
+
+.message {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: rgba(0, 180, 255, 0.18);
+  border: 1px solid #00bfff;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
